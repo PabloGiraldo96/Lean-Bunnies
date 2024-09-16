@@ -1,0 +1,39 @@
+#root {
+  width: 100vw;
+  height: 100vh;
+  /*background-color: rgba(9, 9, 75, 0.222);*/
+}
+
+.bg-custom-gradient {
+  background-image: linear-gradient(
+    to right,
+    #d62828,
+    #e04122,
+    #e9571a,
+    #f16b10,
+    #f77f00
+  );
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
