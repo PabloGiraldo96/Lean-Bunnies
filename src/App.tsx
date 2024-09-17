@@ -8,9 +8,9 @@ function App() {
   return (
     <div>
       <Example />
-      <LoginScreenComponent />
-      {/*<QuestionsComponent />*/}
-      {/*<ScoreboardComponent />*/}
+      {/*<LoginScreenComponent />*/}
+      {/*<QuestionsComponent />
+      <ScoreboardComponent />*/}
     </div>
   );
 }
