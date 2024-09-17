@@ -9,8 +9,8 @@ function App() {
     <div>
       <Example />
       <LoginScreenComponent />
-      <QuestionsComponent />
-      <ScoreboardComponent />
+      {/*<QuestionsComponent />*/}
+      {/*<ScoreboardComponent />*/}
     </div>
   );
 }
