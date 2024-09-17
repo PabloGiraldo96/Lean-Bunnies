@@ -21,7 +21,7 @@ export default function Example() {
         ))}
       </div>
 
-      <div className="relative z-10 flex flex-col items-center justify-start h-full text-white mt-8">
+      <div className="relative z-10 flex flex-col items-center justify-start h-full text-white mt-0">
         <div className="relative w-64 h-64 mb-8 ">
           {/*<div className="absolute inset-0" />*/}
         </div>
