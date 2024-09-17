@@ -11,11 +11,11 @@ export default function Example() {
             key={i}
             className="absolute bg-blue-500 opacity-30 rounded-full"
             style={{
-              width: `${Math.random() * 4 + 1}px`,
-              height: `${Math.random() * 4 + 1}px`,
+              width: `${Math.random() * 5 + 1}px`,
+              height: `${Math.random() * 5 + 1}px`,
               top: `${Math.random() * 100}%`,
               left: `${Math.random() * 100}%`,
-              animation: `float ${Math.random() * 10 + 5}s linear infinite`,
+              animation: `float ${Math.random() * 10 * 5}s linear infinite`,
             }}
           />
         ))}
@@ -39,7 +39,7 @@ export default function Example() {
           START GAME
         </Button>
 
-        <div className="absolute bottom-12 right-4 text-sm opacity-70">
+        <div className="absolute bottom-12 right-4 text-sm opacity-70 mt-8">
           Lean-Bunnies 2024 All Rights Reserved{" "}
         </div>
       </div>
