@@ -23,8 +23,11 @@ export default function Example() {
 
       <div className="relative z-10 flex flex-col items-center justify-center flex-grow text-white px-4">
         <div className="w-48 h-48 sm:w-64 sm:h-64 mb-8 relative">
-          <div className="absolute inset-0 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full animate-pulse" />
-          <img src={LeanLogo} alt="Lean Tech Logo" className="rounded-full" />
+          <img
+            src={LeanLogo}
+            alt="Lean Tech Logo"
+            className="rounded-full animate-pulse"
+          />
         </div>
         <p className="text-lg sm:text-xl mb-8 text-center max-w-md">
           Put your skills to the test by answering questions about Lean Tech
