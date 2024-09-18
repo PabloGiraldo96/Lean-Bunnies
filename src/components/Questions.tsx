@@ -33,10 +33,7 @@ export default function QuestionsComponent() {
       <div className="flex-grow flex justify-center items-center mb-8">
         <div className="relative w-64 h-full sm:w-80 sm:h-80  overflow-hidden">
           {" "}
-          <img
-            src="/leanBunnyDefaultCharacter.svg"
-            alt="Quiz question image"
-          />{" "}
+          <img src="/leanBunnyWithFace.svg" alt="Quiz question image" />{" "}
         </div>
       </div>
 
