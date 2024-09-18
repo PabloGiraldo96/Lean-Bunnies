@@ -1,7 +1,10 @@
 import { Button } from "@/components/ui/button";
+import { useNavigate } from "react-router-dom";
 import LeanLogo from "/LeanTechLogo.png";
 
 export default function Example() {
+  const navigate = useNavigate();
+
   return (
     <div className="relative w-full min-h-screen overflow-hidden bg-gradient-to-br from-blue-900 via-purple-900 to-indigo-900 flex flex-col justify-between">
       {/* Animated background elements */}
@@ -33,7 +36,10 @@ export default function Example() {
           Put your skills to the test by answering questions about Lean Tech
           culture and much more!
         </p>
-        <Button className="px-6 py-3 sm:px-8 sm:py-4 text-lg bg-gradient-to-r from-[#003049] to-[#003049] hover:from-[#002638] hover:to-[#002638] text-white font-bold rounded-full transition-all duration-200 transform hover:scale-105">
+        <Button
+          className="px-6 py-3 sm:px-8 sm:py-4 text-lg bg-gradient-to-r from-[#003049] to-[#003049] hover:from-[#002638] hover:to-[#002638] text-white font-bold rounded-full transition-all duration-200 transform hover:scale-105"
+          onClick={() => navigate("/login")}
+        >
           START GAME
         </Button>
       </div>
