@@ -79,16 +79,25 @@ export default function QuestionsComponent() {
     );
   }, [currentQuestion]);
 
-  //USEEFFECT FOR TIMER
+  //USEEFFECT FOR TIMER AND ITS RELATION WITH LIVES
 
   useEffect(() => {
     if (timeLeft > 0 && !quizEnded) {
       const timer = setTimeout(() => setTimeLeft(timeLeft - 1), 1000);
       return () => clearTimeout(timer);
     } else if (timeLeft === 0 && !quizEnded) {
+      setLives(lives - 1);
       handleNextQuestion();
     }
   }, [timeLeft, quizEnded]);
+
+  // ENDING THE TRIVIA WHEN LIVES REACH 0
+
+  useEffect(() => {
+    if (lives == 0) {
+      setQuizEnded(true);
+    }
+  }, [lives]);
 
   // MOST IMPORTANT FUNCTION
 
@@ -110,7 +119,8 @@ export default function QuestionsComponent() {
     }
     setTimeout(handleNextQuestion, 400);
   };
-  // FUNCTION WHICH HANDLE LIVES
+
+  // FUNCTION WHICH HANDLE NEXT QUESTION
 
   const handleNextQuestion = () => {
     setSelectedAnswer(null);
@@ -122,14 +132,14 @@ export default function QuestionsComponent() {
     }
   };
 
-  const retryQuiz = () => {
-    setCurrentQuestion(0);
-    setScore(0);
-    setIncorrectAnswers([]);
-    setTimeLeft(7);
-    setQuizEnded(false);
-    setShowAnswers(false);
-  };
+  //const retryQuiz = () => {
+  //  setCurrentQuestion(0);
+  //  setScore(0);
+  //  setIncorrectAnswers([]);
+  //  setTimeLeft(7);
+  //  setQuizEnded(false);
+  //  setShowAnswers(false);
+  //};
 
   const showAnswersHandler = () => {
     setShowAnswers(true);
@@ -141,25 +151,25 @@ export default function QuestionsComponent() {
         <Card className="w-full max-w-4xl mx-auto">
           <CardContent className="p-6">
             <h2 className="text-2xl font-bold text-center mb-6">
-              Quiz Results
+              Trivia Results!
             </h2>
             <p className="text-xl text-center mb-4">
               You scored {score} out of {leanQuestions.length}!
             </p>
             {showAnswers ? (
               <div>
-                <h3 className="text-xl font-bold mt-4 mb-2">
+                <h3 className="text-xl font-bold mt-4 mb-8">
                   Incorrect Answers:
                 </h3>
                 {incorrectAnswers.map((item, index) => (
                   <div key={index} className="mb-4">
-                    <p>
+                    <p className="mt-2 mb-2">
                       <strong>Question:</strong> {item.question}
                     </p>
-                    <p>
+                    <p className="mt-2 mb-2">
                       <strong>Your Answer:</strong> {item.incorrectAnswer}
                     </p>
-                    <p>
+                    <p className="mt-2 mb-8">
                       <strong>Correct Answer:</strong> {item.correctAnswer}
                     </p>
                   </div>
@@ -168,7 +178,7 @@ export default function QuestionsComponent() {
             ) : (
               <div className="flex justify-center gap-4">
                 <Button onClick={showAnswersHandler}>Show Answers</Button>
-                <Button onClick={retryQuiz}>Retry Quiz</Button>
+                {/*<Button onClick={retryQuiz}>Retry Quiz</Button>*/}
               </div>
             )}
           </CardContent>
