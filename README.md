@@ -1,8 +1,8 @@
 # Lean-Bunnies
 
-## Educational Game for our company Lean Tech 
+### Educational Game for our company Lean Tech, we hope you like it and enjoy! 
 
-## Languages and libraries used on this project: 
+# Languages and libraries used on this project: 
 <div>
 
  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original-wordmark.svg" title="React" width="40" height="40"/>&nbsp;
