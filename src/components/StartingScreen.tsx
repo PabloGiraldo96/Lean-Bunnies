@@ -9,7 +9,6 @@ export default function Example() {
 
   return (
     <div className="relative w-full min-h-screen overflow-hidden bg-gradient-to-br from-blue-900 via-purple-900 to-indigo-900 flex items-center justify-center">
-      {/* Animated background elements */}
       <div className="absolute inset-0 overflow-hidden">
         {[...Array(60)].map((_, i) => (
           <div
@@ -38,7 +37,7 @@ export default function Example() {
         </div>
         <div className="flex flex-col items-center md:items-start text-center md:text-left max-w-xl">
           <h1
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-4 animate-fade-in"
+            className="text-6xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-4 animate-fade-in"
             style={{ textShadow: "2px 2px 4px rgba(0,0,0,0.5)" }}
           >
             Lean Tech
@@ -46,11 +45,11 @@ export default function Example() {
           <h2
             className="text-2xl sm:text-3xl md:text-4xl font-semibold text-white mb-6 animate-fade-in"
             style={{
-              animationDelay: "0.2s",
+              animationDelay: "0.8s",
               textShadow: "2px 2px 4px rgba(0,0,0,0.5)",
             }}
           >
-            Quiz Game
+            Trivia Time!
           </h2>
           <p
             className="text-base sm:text-lg md:text-xl mb-8 text-white animate-fade-in"
