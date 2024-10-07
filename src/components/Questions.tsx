@@ -4,8 +4,11 @@ import { useState, useEffect, useCallback } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Heart } from "lucide-react";
-import WrongAnswer1 from "/public/warrior.svg";
-import WrongAnswer2 from "/public/wizard.svg";
+import WrongAnswer1 from "/public/Lean- bunnies 1.svg";
+import WrongAnswer2 from "/public/Lean- bunnies 2.svg";
+import WrongAnswer3 from "/public/Lean- bunnies 3.svg";
+import WrongAnswer4 from "/public/Lean- bunnies 4.svg";
+import WrongAnswer5 from "/public/Lean- bunnies 5.svg";
 
 export default function QuestionsComponent() {
   const [currentQuestion, setCurrentQuestion] = useState(0);
@@ -26,6 +29,15 @@ export default function QuestionsComponent() {
     string | null
   >(null);
   const [shuffledOptions, setShuffledOptions] = useState<string[]>([]);
+  const [currentSvgIndex, setCurrentSvgIndex] = useState(0);
+
+  const wrongAnswerSvgs = [
+    WrongAnswer1,
+    WrongAnswer2,
+    WrongAnswer3,
+    WrongAnswer4,
+    WrongAnswer5,
+  ];
 
   const leanQuestions = [
     {
@@ -322,14 +334,14 @@ export default function QuestionsComponent() {
         },
       ]);
       // Trigger wrong answer animation, SVG body animations goes here
-      const randomSVG = [WrongAnswer1, WrongAnswer2][
-        Math.floor(Math.random() * 2)
-      ];
-      setWrongAnswerAnimation(randomSVG);
+      setWrongAnswerAnimation(wrongAnswerSvgs[currentSvgIndex]);
+      setCurrentSvgIndex(
+        (prevIndex) => (prevIndex + 1) % wrongAnswerSvgs.length
+      );
     }
     setTimeout(() => {
       handleNextQuestion();
-      setWrongAnswerAnimation(null); // Reset animation
+      setWrongAnswerAnimation(null); // Reset
     }, 1000);
   };
 
@@ -382,11 +394,11 @@ export default function QuestionsComponent() {
     <div className="bg-gradient-to-br from-blue-900 via-purple-900 to-indigo-900 min-h-screen flex flex-col justify-between p-4 sm:p-6 lg:p-8 ">
       {wrongAnswerAnimation && (
         <div className="fixed inset-0 flex items-center justify-center z-50">
-          <img
+          {/*<img
             src={wrongAnswerAnimation}
             alt="Wrong Answer"
             className="w-64 h-64 animate-bounce"
-          />
+          />*/}
         </div>
       )}
       <div className="self-end mb-4 flex items-center gap-4">
@@ -401,8 +413,12 @@ export default function QuestionsComponent() {
       </div>
 
       <div className="flex-grow flex justify-center items-center mb-8">
-        <div className="relative w-64 h-full sm:w-80 sm:h-80  overflow-hidden">
-          <img src="/leanBunnyWithFace.svg" alt="Quiz question image" />
+        <div className="relative w-64 h-full sm:w-80 sm:h-80 overflow-hidden">
+          <img
+            src={wrongAnswerSvgs[currentSvgIndex]}
+            alt="Lean Bunny"
+            className="w-full h-full object-contain"
+          />
         </div>
       </div>
 
