@@ -4,6 +4,8 @@ import { useState, useEffect, useCallback } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Heart } from "lucide-react";
+
+import FullBunny from "/public/Lean- bunnies default character face.svg";
 import WrongAnswer1 from "/public/Lean- bunnies 1.svg";
 import WrongAnswer2 from "/public/Lean- bunnies 2.svg";
 import WrongAnswer3 from "/public/Lean- bunnies 3.svg";
@@ -32,6 +34,7 @@ export default function QuestionsComponent() {
   const [currentSvgIndex, setCurrentSvgIndex] = useState(0);
 
   const wrongAnswerSvgs = [
+    FullBunny,
     WrongAnswer1,
     WrongAnswer2,
     WrongAnswer3,
@@ -334,9 +337,9 @@ export default function QuestionsComponent() {
         },
       ]);
       // Trigger wrong answer animation, SVG body animations goes here
-      setWrongAnswerAnimation(wrongAnswerSvgs[currentSvgIndex]);
+      setWrongAnswerAnimation(wrongAnswerSvgs[currentSvgIndex + 1]);
       setCurrentSvgIndex(
-        (prevIndex) => (prevIndex + 1) % wrongAnswerSvgs.length
+        (prevIndex) => (prevIndex + 1) % (wrongAnswerSvgs.length - 1)
       );
     }
     setTimeout(() => {
