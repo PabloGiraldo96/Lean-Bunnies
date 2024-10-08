@@ -2,6 +2,8 @@
 
 ### Educational Game for our company Lean Tech, we hope you like it and enjoy! 
 
+### Lean Bunny has six lives, answer the questions correctly to keep him alive and score a lot of points!
+
  ### Some Layout images
 
 <div>
@@ -19,3 +21,5 @@
      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg" title="TS" width="40" height="40"/>&nbsp;
      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-plain-wordmark.svg" title="MongoDB" width="40" height="40"/>&nbsp; 
  </div>
+
+### Development and animations, images and more were created from the scratch by Lean Bunnies team.
