@@ -4,7 +4,7 @@ import { useState, useEffect, useCallback } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Heart } from "lucide-react";
-
+import { Howl } from "howler";
 import FullBunny from "/public/Lean- bunnies default character face.svg";
 import WrongAnswer1 from "/public/Lean- bunnies 1.svg";
 import WrongAnswer2 from "/public/Lean- bunnies 2.svg";
@@ -13,6 +13,13 @@ import WrongAnswer4 from "/public/Lean- bunnies 8.svg";
 import WrongAnswer5 from "/public/leanBunnyHeadOne.svg";
 
 export default function QuestionsComponent() {
+  const soundStart = new Howl({
+    src: [
+      "./sounds/Undertale-Sound-Effect-Attack-Fernando-McKinney-_youtube_.wav",
+    ],
+  });
+  const [soundPlayed, setSoundPlayed] = useState(false);
+
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [score, setScore] = useState(0);
   const [incorrectAnswers, setIncorrectAnswers] = useState<
@@ -321,6 +328,13 @@ export default function QuestionsComponent() {
     }
   }, [lives]);
 
+  useEffect(() => {
+    if (!soundPlayed) {
+      soundStart.play();
+      setSoundPlayed(true);
+    }
+  }, [setSoundPlayed, soundPlayed]);
+
   const handleAnswerClick = (index: number) => {
     setSelectedAnswer(index);
     const currentQuestionData = leanQuestions[currentQuestion];
@@ -341,6 +355,7 @@ export default function QuestionsComponent() {
       setCurrentSvgIndex(
         (prevIndex) => (prevIndex + 1) % wrongAnswerSvgs.length
       );
+      soundStart.play();
     }
     setTimeout(() => {
       handleNextQuestion();
