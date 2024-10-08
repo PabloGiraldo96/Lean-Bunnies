@@ -293,7 +293,7 @@ export default function QuestionsComponent() {
     setSelectedAnswer(null);
     if (currentQuestion < leanQuestions.length - 1) {
       setCurrentQuestion(currentQuestion + 1);
-      setTimeLeft(12);
+      setTimeLeft(13);
     } else {
       setQuizEnded(true);
     }
