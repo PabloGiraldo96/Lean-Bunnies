@@ -1,18 +1,39 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { User, Briefcase } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
+type Player = {
+  nickname: string;
+  role: string;
+};
+
 export default function LoginScreenComponent() {
-  const [nickname, setNickname] = useState("");
-  const [role, setRole] = useState("");
+  const [player, setPlayer] = useState<Player>({ nickname: "", role: "" });
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const savedPlayer = localStorage.getItem("player");
+    if (savedPlayer) {
+      setPlayer(JSON.parse(savedPlayer));
+    }
+  }, []);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission here
-    console.log("Submitted:", { nickname, role });
+    if (player.nickname && player.role) {
+      localStorage.setItem("player", JSON.stringify(player));
+      navigate("/questions");
+    } else {
+      alert("Please fill in both nickname and role");
+    }
+  };
+
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
+    setPlayer({ ...player, [e.target.name]: e.target.value });
   };
 
   return (
@@ -44,8 +65,8 @@ export default function LoginScreenComponent() {
                   required
                   className="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                   placeholder="Nickname here"
-                  value={nickname}
-                  onChange={(e) => setNickname(e.target.value)}
+                  value={player.nickname}
+                  onChange={handleInputChange}
                 />
               </div>
             </div>
@@ -69,14 +90,14 @@ export default function LoginScreenComponent() {
                   name="role"
                   required
                   className="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                  value={role}
-                  onChange={(e) => setRole(e.target.value)}
+                  value={player.role}
+                  onChange={handleInputChange}
                 >
                   <option value="">Select a role</option>
-                  <option value="warrior">Spartan</option>
-                  <option value="mage">Arcane</option>
-                  <option value="rogue">Wizard</option>
-                  <option value="healer">Persian</option>
+                  <option value="Spartan">Spartan</option>
+                  <option value="Arcane">Arcane</option>
+                  <option value="Wizard">Wizard</option>
+                  <option value="Persian">Persian</option>
                 </select>
               </div>
             </div>
@@ -85,7 +106,6 @@ export default function LoginScreenComponent() {
               <button
                 type="submit"
                 className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                onClick={() => navigate("/questions")}
               >
                 Start Adventure
               </button>
