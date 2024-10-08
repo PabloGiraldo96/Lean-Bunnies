@@ -11,6 +11,12 @@ import WrongAnswer2 from "/public/Lean- bunnies 2.svg";
 import WrongAnswer3 from "/public/Lean- bunnies 6.svg";
 import WrongAnswer4 from "/public/Lean- bunnies 8.svg";
 import WrongAnswer5 from "/public/leanBunnyHeadOne.svg";
+import Player from "./LoginScreen.tsx";
+
+type Player = {
+  nickname: string;
+  role: string;
+};
 
 export default function QuestionsComponent() {
   const soundStart = new Howl({
@@ -39,6 +45,7 @@ export default function QuestionsComponent() {
   >(null);
   const [shuffledOptions, setShuffledOptions] = useState<string[]>([]);
   const [currentSvgIndex, setCurrentSvgIndex] = useState(0);
+  const [player, setPlayer] = useState<Player | null>(null);
 
   const wrongAnswerSvgs = [
     FullBunny,
@@ -307,6 +314,10 @@ export default function QuestionsComponent() {
   }, [currentQuestion]);
 
   useEffect(() => {
+    const savedPlayer = localStorage.getItem("player");
+    if (savedPlayer) {
+      setPlayer(JSON.parse(savedPlayer));
+    }
     setShuffledOptions(
       shuffleArray([...leanQuestions[currentQuestion].options])
     );
@@ -376,7 +387,8 @@ export default function QuestionsComponent() {
               Lean Trivia Results!
             </h2>
             <p className="text-xl text-center mb-4">
-              You scored {score} out of {leanQuestions.length}!
+              {player ? `Hey!  ${player.nickname}, your ` : "You, "} score is{" "}
+              {score} out of {leanQuestions.length}!
             </p>
             {showAnswers ? (
               <div>
