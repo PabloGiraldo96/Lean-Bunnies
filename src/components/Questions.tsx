@@ -8,9 +8,9 @@ import { Heart } from "lucide-react";
 import FullBunny from "/public/Lean- bunnies default character face.svg";
 import WrongAnswer1 from "/public/Lean- bunnies 1.svg";
 import WrongAnswer2 from "/public/Lean- bunnies 2.svg";
-import WrongAnswer3 from "/public/Lean- bunnies 3.svg";
-import WrongAnswer4 from "/public/Lean- bunnies 4.svg";
-import WrongAnswer5 from "/public/Lean- bunnies 5.svg";
+import WrongAnswer3 from "/public/Lean- bunnies 6.svg";
+import WrongAnswer4 from "/public/Lean- bunnies 8.svg";
+import WrongAnswer5 from "/public/leanBunnyHeadOne.svg";
 
 export default function QuestionsComponent() {
   const [currentQuestion, setCurrentQuestion] = useState(0);
@@ -26,7 +26,7 @@ export default function QuestionsComponent() {
   const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
   const [quizEnded, setQuizEnded] = useState(false);
   const [showAnswers, setShowAnswers] = useState(false);
-  const [lives, setLives] = useState(5);
+  const [lives, setLives] = useState(6);
   const [wrongAnswerAnimation, setWrongAnswerAnimation] = useState<
     string | null
   >(null);
@@ -339,7 +339,7 @@ export default function QuestionsComponent() {
       // Trigger wrong answer animation, SVG body animations goes here
       setWrongAnswerAnimation(wrongAnswerSvgs[currentSvgIndex + 1]);
       setCurrentSvgIndex(
-        (prevIndex) => (prevIndex + 1) % (wrongAnswerSvgs.length - 1)
+        (prevIndex) => (prevIndex + 1) % wrongAnswerSvgs.length
       );
     }
     setTimeout(() => {
