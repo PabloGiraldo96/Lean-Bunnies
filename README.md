@@ -22,4 +22,4 @@
      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-plain-wordmark.svg" title="MongoDB" width="40" height="40"/>&nbsp; 
  </div>
 
-### Development and animations, images and more were created from the scratch by Lean Bunnies team.
+### The development and animations, images and much more have been created from scratch by the team at Lean Bunnies..
