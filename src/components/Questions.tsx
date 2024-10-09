@@ -11,6 +11,9 @@ import WrongAnswer2 from "/public/Lean- bunnies 2.svg";
 import WrongAnswer3 from "/public/Lean- bunnies 6.svg";
 import WrongAnswer4 from "/public/Lean- bunnies 8.svg";
 import WrongAnswer5 from "/public/leanBunnyHeadOne.svg";
+import WrongAnswerGif from "/public/lv_0_20241007124836.gif";
+import WhiteFlashGif from "/public/flash.gif";
+
 import Player from "./LoginScreen.tsx";
 
 type Player = {
@@ -46,6 +49,8 @@ export default function QuestionsComponent() {
   const [shuffledOptions, setShuffledOptions] = useState<string[]>([]);
   const [currentSvgIndex, setCurrentSvgIndex] = useState(0);
   const [player, setPlayer] = useState<Player | null>(null);
+  const [whiteFlashAnimation, setWhiteFlashAnimation] =
+    useState<boolean>(false);
 
   const wrongAnswerSvgs = [
     FullBunny,
@@ -362,7 +367,8 @@ export default function QuestionsComponent() {
         },
       ]);
       // Trigger wrong answer animation, SVG body animations goes here
-      setWrongAnswerAnimation(wrongAnswerSvgs[currentSvgIndex + 1]);
+      setWrongAnswerAnimation(WrongAnswerGif);
+      setWhiteFlashAnimation(true);
       setCurrentSvgIndex(
         (prevIndex) => (prevIndex + 1) % wrongAnswerSvgs.length
       );
@@ -372,6 +378,9 @@ export default function QuestionsComponent() {
       handleNextQuestion();
       setWrongAnswerAnimation(null); // Reset
     }, 1000);
+    setTimeout(() => {
+      setWhiteFlashAnimation(false);
+    }, 100);
   };
 
   const showAnswersHandler = () => {
@@ -387,7 +396,7 @@ export default function QuestionsComponent() {
               Lean Trivia Results!
             </h2>
             <p className="text-xl text-center mb-4">
-              {player ? `Hey!  ${player.nickname}, your ` : "You, "} score is{" "}
+              {player ? `Hey  ${player.nickname}!, your ` : "You, "} score is{" "}
               {score} out of {leanQuestions.length}!
             </p>
             {showAnswers ? (
@@ -424,11 +433,11 @@ export default function QuestionsComponent() {
     <div className="bg-gradient-to-br from-blue-900 via-purple-900 to-indigo-900 min-h-screen flex flex-col justify-between p-4 sm:p-6 lg:p-8 ">
       {wrongAnswerAnimation && (
         <div className="fixed inset-0 flex items-center justify-center z-50">
-          {/*<img
+          <img
             src={wrongAnswerAnimation}
             alt="Wrong Answer"
-            className="w-64 h-64 animate-bounce"
-          />*/}
+            className="w-64 h-84 -mt-32 animate-bounce"
+          />
         </div>
       )}
       <div className="self-end mb-4 flex items-center gap-4">
@@ -443,6 +452,15 @@ export default function QuestionsComponent() {
       </div>
 
       <div className="flex-grow flex justify-center items-center mb-8">
+        {whiteFlashAnimation && (
+          <div className="fixed inset-0 z-40">
+            <img
+              src={WhiteFlashGif}
+              alt="White Flash"
+              className="w-full h-full object-cover"
+            />
+          </div>
+        )}
         <div className="relative w-64 h-full sm:w-80 sm:h-80 overflow-hidden">
           <img
             src={wrongAnswerSvgs[currentSvgIndex]}
