@@ -465,7 +465,7 @@ export default function QuestionsComponent() {
           <img
             src={wrongAnswerSvgs[currentSvgIndex]}
             alt="Lean Bunny"
-            className="w-full h-full object-contain"
+            className="w-full h-full object-cover"
           />
         </div>
       </div>
